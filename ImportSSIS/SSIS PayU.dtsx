@@ -1,0 +1,1518 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2022 7:58:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JPAM"
+  DTS:CreatorName="JPAM\User"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{E66F3809-3B1C-4864-B4C6-57D93FC19C19}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.229"
+  DTS:LocaleID="9226"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="SSIS PayU"
+  DTS:VersionGUID="{1822EE7D-5B22-4276-BC99-E9BECC013E32}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7162B273-438B-4C14-BE3C-095C42AF3504}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=JPAM;Initial Catalog=PayU;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{87DD6F85-D253-41B0-B99E-C7C553C4E39E}"
+      DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="D:\Python scripts\PayU Test\FraudTestPayU 2.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="trans_date_trans_time"
+              DTS:DTSID="{1399D738-180A-477F-8528-FF9BE79BD4B1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cc_num"
+              DTS:DTSID="{8C56AA42-4C31-4178-8BFB-26F060B9BCB1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="merchant"
+              DTS:DTSID="{1F8BD807-8FD1-4759-A8FD-A45A65816918}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="category"
+              DTS:DTSID="{3F179E3E-C557-48C0-981C-67F30EC41BCF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="amt"
+              DTS:DTSID="{FD92850A-76F7-49EA-991F-28DBBB50F584}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="first"
+              DTS:DTSID="{718BA6F9-D567-4B37-9F61-417C1D5E5F71}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="last"
+              DTS:DTSID="{34E93194-09B4-4F45-B6BB-C3AAC29C1A84}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="gender"
+              DTS:DTSID="{6052A179-A2EE-4FE1-9223-5EA46870AE22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="street"
+              DTS:DTSID="{65F13E23-D65C-4F47-88C8-17D8D1926B99}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="city"
+              DTS:DTSID="{F5535423-03FC-4F39-95EB-4F1A4E030B5A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="state"
+              DTS:DTSID="{688E41B2-9838-4673-9DDC-1FF825E8B216}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="zip"
+              DTS:DTSID="{D1CD5724-42A1-4E20-B900-8C603DA817A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="lat"
+              DTS:DTSID="{BEE89B72-D4ED-41B5-A0EC-8DD7A650F097}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="long"
+              DTS:DTSID="{C2BD0974-2C86-4D9B-BF21-59666CEFDA2C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="city_pop"
+              DTS:DTSID="{4228B256-D831-4EEB-9C9A-F2F0AF317865}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="job"
+              DTS:DTSID="{458D1816-F9FE-47F7-B958-18453F32313E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="dob"
+              DTS:DTSID="{1766214C-03D9-4130-AD8E-2FB5B45E800D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="trans_num"
+              DTS:DTSID="{714F2761-584D-4D42-BE91-F7EBDBB3FB38}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="unix_time"
+              DTS:DTSID="{9AA68AE9-7334-4C7A-88A2-AEE78A8A0B4B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="merch_lat"
+              DTS:DTSID="{84D5EB89-A7A7-434D-8185-145590061825}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="merch_long"
+              DTS:DTSID="{75810E8B-A90E-4245-A1B0-5D3AD77CC350}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="16"
+              DTS:TextQualified="True"
+              DTS:ObjectName="is_fraud"
+              DTS:DTSID="{5690CA08-6F09-4FE3-857F-F63BDAC1D481}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="currency"
+              DTS:DTSID="{49D1DA6B-B6D5-49BF-AF8E-8E8EDB269151}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DTSID="{8BA5C23C-4A3B-4C99-8CB0-B4A6A464872E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Data Conversion 0 - 0"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 0 - 0"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[amt]"
+                      cachedDataType="numeric"
+                      cachedName="amt"
+                      cachedPrecision="18"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[amt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[city_pop]"
+                      cachedDataType="numeric"
+                      cachedName="city_pop"
+                      cachedPrecision="18"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city_pop]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[unix_time]"
+                      cachedDataType="numeric"
+                      cachedName="unix_time"
+                      cachedPrecision="18"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[unix_time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[merch_lat]"
+                      cachedDataType="numeric"
+                      cachedName="merch_lat"
+                      cachedPrecision="18"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_lat]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[merch_long]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="merch_long"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_long]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[is_fraud]"
+                      cachedDataType="i1"
+                      cachedName="is_fraud"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[is_fraud]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[amt]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[amt]"
+                      name="amt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[amt]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[city_pop]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[city_pop]"
+                      name="city_pop"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city_pop]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[unix_time]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[unix_time]"
+                      name="unix_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[unix_time]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_lat]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_lat]"
+                      name="merch_lat"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_lat]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_long]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_long]"
+                      name="merch_long"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_long]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[is_fraud]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[is_fraud]"
+                      name="is_fraud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[is_fraud]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - tbFraudTestPayU"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[JPAM].[tbFraudTestPayU]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[trans_date_trans_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="trans_date_trans_time"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[trans_date_trans_time]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_date_trans_time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[cc_num]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="cc_num"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[cc_num]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[cc_num]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[merchant]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="merchant"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merchant]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merchant]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[category]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="category"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[category]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[category]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[amt]"
+                      cachedDataType="i4"
+                      cachedName="amt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[amt]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[amt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[first]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="first"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[first]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[first]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[last]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="last"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[last]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[last]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="gender"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[gender]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[gender]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[street]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="street"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[street]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[street]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="state"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[state]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[state]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[zip]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="zip"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[zip]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[zip]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[lat]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="lat"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[lat]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[lat]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[long]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="long"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[long]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[long]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[city_pop]"
+                      cachedDataType="i4"
+                      cachedName="city_pop"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[city_pop]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[city_pop]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[job]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="job"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[job]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[job]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[dob]"
+                      cachedDataType="dbDate"
+                      cachedName="dob"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[dob]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[dob]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[trans_num]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="trans_num"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[trans_num]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_num]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[unix_time]"
+                      cachedDataType="i8"
+                      cachedName="unix_time"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[unix_time]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[unix_time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[merch_lat]"
+                      cachedDataType="i8"
+                      cachedName="merch_lat"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merch_lat]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_lat]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[merch_long]"
+                      cachedDataType="i8"
+                      cachedName="merch_long"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merch_long]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[merch_long]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[is_fraud]"
+                      cachedDataType="i2"
+                      cachedName="is_fraud"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[is_fraud]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[is_fraud]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].Columns[currency]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="currency"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[currency]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[currency]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[trans_date_trans_time]"
+                      dataType="dbTimeStamp"
+                      name="trans_date_trans_time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[cc_num]"
+                      dataType="wstr"
+                      length="30"
+                      name="cc_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merchant]"
+                      dataType="wstr"
+                      length="50"
+                      name="merchant" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[category]"
+                      dataType="wstr"
+                      length="20"
+                      name="category" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[amt]"
+                      dataType="i4"
+                      name="amt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[first]"
+                      dataType="wstr"
+                      length="20"
+                      name="first" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[last]"
+                      dataType="wstr"
+                      length="20"
+                      name="last" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="1"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[street]"
+                      dataType="wstr"
+                      length="100"
+                      name="street" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="2"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[zip]"
+                      dataType="wstr"
+                      length="10"
+                      name="zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[lat]"
+                      dataType="wstr"
+                      length="30"
+                      name="lat" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[long]"
+                      dataType="wstr"
+                      length="30"
+                      name="long" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[city_pop]"
+                      dataType="i4"
+                      name="city_pop" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[job]"
+                      dataType="wstr"
+                      length="100"
+                      name="job" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[dob]"
+                      dataType="dbDate"
+                      name="dob" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[trans_num]"
+                      dataType="wstr"
+                      length="100"
+                      name="trans_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[unix_time]"
+                      dataType="i8"
+                      name="unix_time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merch_lat]"
+                      dataType="i8"
+                      name="merch_lat" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[merch_long]"
+                      dataType="i8"
+                      name="merch_long" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[is_fraud]"
+                      dataType="i2"
+                      name="is_fraud" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input].ExternalColumns[currency]"
+                      dataType="wstr"
+                      length="3"
+                      name="currency" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - FraudTestPayU 2_csv"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_date_trans_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[trans_date_trans_time]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_date_trans_time]"
+                      name="trans_date_trans_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[cc_num]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[cc_num]"
+                      length="30"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[cc_num]"
+                      name="cc_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merchant]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merchant]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merchant]"
+                      name="merchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[category]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[category]"
+                      name="category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[amt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[amt]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[amt]"
+                      name="amt"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[first]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[first]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[first]"
+                      name="first"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[last]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[last]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[last]"
+                      name="last"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[gender]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[gender]"
+                      name="gender"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[street]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[street]"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[street]"
+                      name="street"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[city]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[state]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[state]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[zip]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[zip]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[zip]"
+                      name="zip"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[lat]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[lat]"
+                      length="30"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[lat]"
+                      name="lat"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[long]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[long]"
+                      length="30"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[long]"
+                      name="long"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city_pop]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[city_pop]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[city_pop]"
+                      name="city_pop"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[job]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[job]"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[job]"
+                      name="job"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[dob]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[dob]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[dob]"
+                      name="dob"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_num]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[trans_num]"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[trans_num]"
+                      name="trans_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[unix_time]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[unix_time]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[unix_time]"
+                      name="unix_time"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_lat]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merch_lat]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_lat]"
+                      name="merch_lat"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_long]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merch_long]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[merch_long]"
+                      name="merch_long"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[is_fraud]"
+                      dataType="i1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[is_fraud]"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[is_fraud]"
+                      name="is_fraud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[currency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[currency]"
+                      length="3"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].Columns[currency]"
+                      name="currency"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[trans_date_trans_time]"
+                      dataType="dbTimeStamp"
+                      name="trans_date_trans_time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[cc_num]"
+                      dataType="wstr"
+                      length="30"
+                      name="cc_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merchant]"
+                      dataType="wstr"
+                      length="50"
+                      name="merchant" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[category]"
+                      dataType="wstr"
+                      length="20"
+                      name="category" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[amt]"
+                      dataType="numeric"
+                      name="amt"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[first]"
+                      dataType="wstr"
+                      length="20"
+                      name="first" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[last]"
+                      dataType="wstr"
+                      length="20"
+                      name="last" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="1"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[street]"
+                      dataType="wstr"
+                      length="100"
+                      name="street" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="2"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[zip]"
+                      dataType="wstr"
+                      length="10"
+                      name="zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[lat]"
+                      dataType="wstr"
+                      length="30"
+                      name="lat" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[long]"
+                      dataType="wstr"
+                      length="30"
+                      name="long" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[city_pop]"
+                      dataType="numeric"
+                      name="city_pop"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[job]"
+                      dataType="wstr"
+                      length="100"
+                      name="job" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[dob]"
+                      dataType="dbDate"
+                      name="dob" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[trans_num]"
+                      dataType="wstr"
+                      length="100"
+                      name="trans_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[unix_time]"
+                      dataType="numeric"
+                      name="unix_time"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merch_lat]"
+                      dataType="numeric"
+                      name="merch_lat"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[merch_long]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="merch_long" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[is_fraud]"
+                      dataType="i1"
+                      name="is_fraud" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output].ExternalColumns[currency]"
+                      dataType="wstr"
+                      length="3"
+                      name="currency" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Data Conversion Output]"
+              endId="Package\Data Flow Task 1\Destination - tbFraudTestPayU.Inputs[Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task 1\Source - FraudTestPayU 2_csv.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+</DTS:Executable>
